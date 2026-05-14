@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "meetingflow-core-candidate.schema.json",
+  "title": "MeetingFlow Core Candidate Input",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "source_text": { "type": "string" },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "source_id": { "type": "string" },
+          "title": { "type": "string" },
+          "url": { "type": "string" },
+          "text": { "type": "string" }
+        },
+        "required": ["text"]
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["claim", "action_item", "action"]
+          },
+          "claim_type": {
+            "type": "string",
+            "enum": ["decision", "open_issue", "risk", "action_item", "background", "question", "update"]
+          },
+          "claim": { "type": "string" },
+          "task": { "type": "string" },
+          "assignee": { "type": "string" },
+          "due_date": { "type": "string" },
+          "source_type": {
+            "type": "string",
+            "enum": ["doc", "chat", "bitable", "minutes", "unknown"]
+          },
+          "source_title": { "type": "string" },
+          "source_url": { "type": "string" },
+          "evidence_sentence": { "type": "string" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "required": ["type", "evidence_sentence"]
+      }
+    }
+  },
+  "required": ["items"]
+}
+

@@ -1,0 +1,30 @@
+{
+  "query": "Bitable 任务池 评测",
+  "top_k": 3,
+  "docs": [
+    {
+      "doc_id": "doc-1",
+      "title": "MeetingFlow 项目设计稿",
+      "source_type": "doc",
+      "text": "V1 阶段先使用 Bitable 作为任务池和评测表，不直接接入飞书 Tasks。会后任务包含负责人、截止时间、来源证据句和状态。"
+    },
+    {
+      "doc_id": "doc-2",
+      "title": "妙记产品对比",
+      "source_type": "doc",
+      "text": "飞书妙记侧重语音转写、智能纪要、待办事项和关键词提取，不涉及评测闭环。"
+    },
+    {
+      "doc_id": "doc-3",
+      "title": "Action Items 字段规范",
+      "source_type": "doc",
+      "text": "Action Items 必须包含负责人、截止时间和来源证据，写入 Bitable 后由人工审阅。"
+    },
+    {
+      "doc_id": "doc-4",
+      "title": "无关日志",
+      "source_type": "chat",
+      "text": "今天天气不错，午饭吃了拉面。"
+    }
+  ]
+}

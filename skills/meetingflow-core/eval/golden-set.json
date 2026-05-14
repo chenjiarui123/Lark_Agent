@@ -1,0 +1,140 @@
+{
+  "version": "0.1.0",
+  "description": "MeetingFlow 决赛版本 mini golden set。每个 case 包含原文、人工标注的 expected_items（fingerprint 由 stable-id 生成可复现）和 retrieval 期望命中。规模故意保持小，用于自证 pipeline 行为，不用于训练。",
+  "cases": [
+    {
+      "case_id": "case-001-bitable-decision",
+      "scenario": "post-meeting",
+      "sources": [
+        {
+          "source_id": "doc-design-001",
+          "title": "MeetingFlow 项目设计稿",
+          "url": "https://example.feishu.cn/docx/design-001",
+          "text": "V1 阶段先使用 Bitable 作为任务池和评测表，不直接接入飞书 Tasks。会后任务必须包含负责人、截止时间、来源证据句和状态。张三负责在本周五前补齐 ActionItems 表的字段约束。"
+        }
+      ],
+      "candidate_items": [
+        {
+          "type": "claim",
+          "claim_type": "decision",
+          "claim": "V1 阶段先使用 Bitable 作为任务池和评测表。",
+          "source_type": "doc",
+          "source_title": "MeetingFlow 项目设计稿",
+          "source_url": "https://example.feishu.cn/docx/design-001",
+          "evidence_sentence": "V1 阶段先使用 Bitable 作为任务池和评测表，不直接接入飞书 Tasks。",
+          "confidence": 0.92
+        },
+        {
+          "type": "action_item",
+          "task": "补齐 ActionItems 表的字段约束。",
+          "assignee": "张三",
+          "due_date": "本周五",
+          "source_type": "doc",
+          "source_title": "MeetingFlow 项目设计稿",
+          "source_url": "https://example.feishu.cn/docx/design-001",
+          "evidence_sentence": "张三负责在本周五前补齐 ActionItems 表的字段约束。",
+          "confidence": 0.88
+        },
+        {
+          "type": "claim",
+          "claim_type": "risk",
+          "claim": "如果不接入飞书 Tasks，长期会有迁移成本（无证据，应该被拒）。",
+          "source_type": "doc",
+          "source_title": "MeetingFlow 项目设计稿",
+          "source_url": "https://example.feishu.cn/docx/design-001",
+          "evidence_sentence": "长期来看不接入飞书 Tasks 会带来迁移成本。",
+          "confidence": 0.4
+        }
+      ],
+      "expected": {
+        "verified_count": 2,
+        "rejected_count": 1,
+        "verified_evidence_sentences": [
+          "V1 阶段先使用 Bitable 作为任务池和评测表，不直接接入飞书 Tasks。",
+          "张三负责在本周五前补齐 ActionItems 表的字段约束。"
+        ],
+        "rejected_evidence_sentences": [
+          "长期来看不接入飞书 Tasks 会带来迁移成本。"
+        ]
+      }
+    },
+    {
+      "case_id": "case-002-meeting-lens-recall",
+      "scenario": "pre-meeting",
+      "retrieval": {
+        "query": "MeetingFlow 决赛 评测 闭环",
+        "top_k": 3,
+        "docs": [
+          {
+            "doc_id": "doc-eval",
+            "title": "MeetingFlow 评测设计",
+            "source_type": "doc",
+            "text": "MeetingFlow 决赛版本通过 score-run 和 Feedback 表实现评测闭环，覆盖证据通过率、Action Item 准确率和重复度。"
+          },
+          {
+            "doc_id": "doc-bot-history",
+            "title": "Bot 历史聊天记录",
+            "source_type": "chat",
+            "text": "上周聊到决赛要补 retrieve 和评测脚本，否则评委会问技术深度。"
+          },
+          {
+            "doc_id": "doc-product",
+            "title": "妙记产品介绍",
+            "source_type": "doc",
+            "text": "飞书妙记主要做语音转写和会议纪要，不包含评测能力。"
+          },
+          {
+            "doc_id": "doc-noise",
+            "title": "周报模板",
+            "source_type": "doc",
+            "text": "本周完成事项、下周计划、风险点和需要协助。"
+          }
+        ],
+        "expected_top_doc_ids": ["doc-eval", "doc-bot-history"],
+        "must_not_top": ["doc-noise"]
+      }
+    },
+    {
+      "case_id": "case-003-action-stable-id",
+      "scenario": "post-meeting",
+      "sources": [
+        {
+          "source_id": "minutes-001",
+          "title": "复赛 Demo 评审会议纪要",
+          "url": "https://example.feishu.cn/minutes/001",
+          "text": "李四需要在周三前更新 README 5.x 决赛章节，并把 retrieve 命令加进 SKILL.md。"
+        }
+      ],
+      "candidate_items": [
+        {
+          "type": "action_item",
+          "task": "更新 README 5.x 决赛章节，并把 retrieve 命令加进 SKILL.md。",
+          "assignee": "李四",
+          "due_date": "周三",
+          "source_type": "minutes",
+          "source_title": "复赛 Demo 评审会议纪要",
+          "source_url": "https://example.feishu.cn/minutes/001",
+          "evidence_sentence": "李四需要在周三前更新 README 5.x 决赛章节，并把 retrieve 命令加进 SKILL.md。",
+          "confidence": 0.9
+        },
+        {
+          "type": "action_item",
+          "task": "更新README 5.x决赛章节，并把retrieve命令加进SKILL.md",
+          "assignee": "李四",
+          "due_date": "周三",
+          "source_type": "minutes",
+          "source_title": "复赛 Demo 评审会议纪要",
+          "source_url": "https://example.feishu.cn/minutes/001",
+          "evidence_sentence": "李四需要在周三前更新 README 5.x 决赛章节，并把 retrieve 命令加进 SKILL.md。",
+          "confidence": 0.86
+        }
+      ],
+      "expected": {
+        "verified_count": 2,
+        "rejected_count": 0,
+        "expect_dedupe_by_fingerprint": true,
+        "comment": "两条文案略有差异（去空格/标点），stable-id 应该归并为同一 action_fingerprint。"
+      }
+    }
+  ]
+}

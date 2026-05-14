@@ -1,0 +1,43 @@
+{
+  "sources": [
+    {
+      "source_id": "doc-001",
+      "title": "MeetingFlow 项目设计稿",
+      "url": "https://example.feishu.cn/docx/demo",
+      "text": "V1 阶段先使用 Bitable 作为任务池和评测表，不直接接入飞书 Tasks。会后任务需要包含负责人、截止时间、来源证据句和状态。"
+    }
+  ],
+  "items": [
+    {
+      "type": "claim",
+      "claim_type": "decision",
+      "claim": "V1 阶段先使用 Bitable 作为任务池和评测表。",
+      "source_type": "doc",
+      "source_title": "MeetingFlow 项目设计稿",
+      "source_url": "https://example.feishu.cn/docx/demo",
+      "evidence_sentence": "V1 阶段先使用 Bitable 作为任务池和评测表，不直接接入飞书 Tasks。",
+      "confidence": 0.92
+    },
+    {
+      "type": "action_item",
+      "task": "补充会后任务字段。",
+      "assignee": "张三",
+      "source_type": "doc",
+      "source_title": "MeetingFlow 项目设计稿",
+      "source_url": "https://example.feishu.cn/docx/demo",
+      "evidence_sentence": "会后任务需要包含负责人、截止时间、来源证据句和状态。",
+      "confidence": 0.85
+    },
+    {
+      "type": "claim",
+      "claim_type": "risk",
+      "claim": "这是一个没有证据的风险。",
+      "source_type": "doc",
+      "source_title": "MeetingFlow 项目设计稿",
+      "source_url": "https://example.feishu.cn/docx/demo",
+      "evidence_sentence": "原文里不存在这句话。",
+      "confidence": 0.6
+    }
+  ]
+}
+

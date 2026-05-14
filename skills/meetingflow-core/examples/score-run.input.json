@@ -1,0 +1,17 @@
+{
+  "metrics": {
+    "verified_evidence_count": 18,
+    "total_evidence_count": 20,
+    "human_correct_action_count": 8,
+    "human_reviewed_action_count": 10,
+    "useful_card_count": 7,
+    "feedback_card_count": 9,
+    "failed_run_count": 1,
+    "total_run_count": 20,
+    "on_time_run_count": 18,
+    "expected_run_count": 20,
+    "duplicate_item_count": 2,
+    "total_item_count": 40
+  }
+}
+

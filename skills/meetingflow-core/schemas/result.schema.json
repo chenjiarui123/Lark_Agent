@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "meetingflow-core-result.schema.json",
+  "title": "MeetingFlow Core Result",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "ok": { "type": "boolean" },
+    "command": { "type": ["string", "null"] },
+    "error": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": true }
+    },
+    "metrics": { "type": "object", "additionalProperties": true },
+    "dimensions": { "type": "object", "additionalProperties": true },
+    "overall_score": { "type": "number" },
+    "overall_score_100": { "type": "number" }
+  },
+  "required": ["ok"]
+}
+
